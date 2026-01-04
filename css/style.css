@@ -1,0 +1,44 @@
+body {
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Tarjeta principal */
+.calculator-card {
+    background: #ffffff;
+    border-radius: 18px;
+    width: 100%;
+    max-width: 380px;
+    overflow: hidden;
+}
+
+/* Header */
+.calculator-header {
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    color: #fff;
+    padding: 20px;
+}
+
+/* Body */
+.calculator-body {
+    padding: 20px;
+}
+
+/* Botones */
+.btn-group .btn {
+    font-size: 1.2rem;
+    padding: 10px 0;
+}
+
+/* Resultado */
+#resultado {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* Responsive extra (pantallas pequeñas) */
+@media (max-width: 576px) {
+    .calculator-header h4 {
+        font-size: 1.3rem;
+    }
+}
