@@ -1,29 +1,66 @@
-function calcular(op) {
-    const n1 = parseFloat(document.getElementById("num1").value);
-    const n2 = parseFloat(document.getElementById("num2").value);
-    const resultado = document.getElementById("resultado");
+const display = document.getElementById("display");
+const buttons = document.querySelectorAll(".btn");
 
-    if (isNaN(n1) || isNaN(n2)) {
-        resultado.innerText = "Ingrese ambos números";
-        resultado.className = "alert alert-warning text-center";
-        return;
+let current = "";
+let operator = "";
+let previous = "";
+
+buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+        const value = btn.innerText;
+
+        if (!isNaN(value) || value === ".") {
+            if (value === "." && current.includes(".")) return;
+            current += value;
+            updateDisplay(current);
+        }
+
+        else if (["+", "−", "×", "÷"].includes(value)) {
+            if (!current) return;
+            operator = value;
+            previous = current;
+            current = "";
+        }
+
+        else if (value === "=") {
+            if (!previous || !current) return;
+            const result = calculate();
+            updateDisplay(result);
+            current = result.toString();
+            previous = "";
+        }
+
+        else if (value === "C") {
+            current = "";
+            previous = "";
+            operator = "";
+            updateDisplay("0");
+        }
+
+        else if (value === "⌫") {
+            current = current.slice(0, -1);
+            updateDisplay(current || "0");
+        }
+
+        else if (value === "%") {
+            current = (parseFloat(current) / 100).toString();
+            updateDisplay(current);
+        }
+    });
+});
+
+function calculate() {
+    const a = parseFloat(previous);
+    const b = parseFloat(current);
+
+    switch (operator) {
+        case "+": return a + b;
+        case "−": return a - b;
+        case "×": return a * b;
+        case "÷": return b === 0 ? "Error" : a / b;
     }
+}
 
-    let r;
-    switch (op) {
-        case '+': r = n1 + n2; break;
-        case '-': r = n1 - n2; break;
-        case '*': r = n1 * n2; break;
-        case '/':
-            if (n2 === 0) {
-                resultado.innerText = "No se puede dividir entre 0";
-                resultado.className = "alert alert-danger text-center";
-                return;
-            }
-            r = n1 / n2;
-            break;
-    }
-
-    resultado.innerText = "Resultado: " + r;
-    resultado.className = "alert alert-success text-center";
+function updateDisplay(value) {
+    display.innerText = value;
 }
