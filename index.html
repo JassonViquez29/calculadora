@@ -3,45 +3,124 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dulce Frío - Helados, Paletas y Bolis (Packs de 12)</title>
+  <title>Frosty Lotes - Helados, Paletas y Bolis</title>
 
   <!-- UIkit CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.20.10/dist/css/uikit.min.css" />
 
+  <!-- UIkit JS -->
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.20.10/dist/js/uikit.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.20.10/dist/js/uikit-icons.min.js"></script>
+
   <style>
-    /* Personalización ligera para que se vea más premium */
     body {
-      background: #fafafa;
+      background: #f7f8fb;
     }
 
-    .hero-bg {
-      background: linear-gradient(120deg, rgba(0,0,0,0.65), rgba(0,0,0,0.35)),
-        url("https://images.unsplash.com/photo-1563805042-7684c019e1cb?q=80&w=1600&auto=format&fit=crop");
-      background-size: cover;
-      background-position: center;
-      border-radius: 18px;
-      overflow: hidden;
+    .soft-shadow {
+      box-shadow: 0 14px 40px rgba(0,0,0,.08);
     }
 
     .section-card {
       border-radius: 18px;
     }
 
-    .soft-shadow {
-      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    .hero {
+      border-radius: 22px;
+      background: linear-gradient(135deg, #ffffff, #f2f6ff);
+      overflow: hidden;
     }
 
-    .badge-pack {
-      border-radius: 999px;
+    .hero-badge {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      font-weight: 600;
       padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(30,135,240,.10);
+      color: #1e87f0;
+    }
+
+    .product-card {
+      border-radius: 18px;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 50px rgba(0,0,0,.12);
+    }
+
+    /* ===== Botón flotante tipo WhatsApp ===== */
+    .btn-float {
+      position: fixed;
+      bottom: 18px;
+      right: 18px;
+      z-index: 9999;
+      border-radius: 999px;
+      padding: 12px 16px;
+      box-shadow: 0 12px 30px rgba(0,0,0,.2);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Solo mostrar el botón en pantallas pequeñas */
+    @media (min-width: 960px) {
+      .btn-float {
+        display: none !important;
+      }
+    }
+
+    /* ===== MODO PC EN MÓVIL =====
+       Forzamos que algunos grids se mantengan en 3 columnas
+       aunque sea teléfono.
+    */
+    body.modo-pc .force-3cols > div {
+      width: 33.333% !important;
+    }
+
+    body.modo-pc .force-2cols > div {
+      width: 50% !important;
+    }
+
+    body.modo-pc .uk-grid {
+      margin-left: -10px;
+    }
+
+    body.modo-pc .uk-grid > * {
+      padding-left: 10px;
+    }
+
+    body.modo-pc .uk-container {
+      max-width: 1200px !important;
+    }
+
+    /* Tarjetas pequeñas de sabores */
+    .flavor-pill {
+      border-radius: 16px;
+      border: 1px solid rgba(0,0,0,.06);
+      background: #fff;
       font-weight: 600;
     }
 
-    .floating-whatsapp {
-      position: fixed;
-      right: 18px;
-      bottom: 18px;
-      z-index: 999;
+    /* Sección footer */
+    .footer {
+      background: #0f172a;
+      color: rgba(255,255,255,.85);
+      border-radius: 22px 22px 0 0;
+    }
+
+    .footer a {
+      color: rgba(255,255,255,.85);
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      color: #fff;
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -49,132 +128,97 @@
 <body>
 
   <!-- NAVBAR -->
-  <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; end: 200; offset: 0">
-    <nav class="uk-navbar-container uk-navbar-transparent uk-padding-small" uk-navbar>
+  <div class="uk-container uk-margin-top">
+    <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
       <div class="uk-navbar-left">
         <a class="uk-navbar-item uk-logo" href="#">
-          🍦 Dulce Frío
+          🍦 FrostyLotes
         </a>
       </div>
 
       <div class="uk-navbar-right uk-visible@m">
         <ul class="uk-navbar-nav">
+          <li><a href="#inicio">Inicio</a></li>
           <li><a href="#productos">Productos</a></li>
-          <li><a href="#packs">Packs</a></li>
-          <li><a href="#nosotros">Nosotros</a></li>
-          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#sabores">Sabores</a></li>
+          <li><a href="#empresa">Empresa</a></li>
+          <li><a href="#pedido">Pedido</a></li>
           <li><a href="#contacto">Contacto</a></li>
         </ul>
-        <div class="uk-navbar-item">
-          <a class="uk-button uk-button-primary uk-border-pill" href="#contacto">
-            Pedir ahora
-          </a>
-        </div>
       </div>
 
       <!-- Menú móvil -->
       <div class="uk-navbar-right uk-hidden@m">
-        <a class="uk-navbar-toggle" uk-navbar-toggle-icon href="#offcanvas-nav" uk-toggle></a>
+        <a class="uk-navbar-toggle" uk-navbar-toggle-icon href="#menu-movil" uk-toggle></a>
       </div>
     </nav>
   </div>
 
-  <!-- OFFCANVAS MOBILE -->
-  <div id="offcanvas-nav" uk-offcanvas="overlay: true">
+  <!-- OFFCANVAS MENU -->
+  <div id="menu-movil" uk-offcanvas="overlay: true">
     <div class="uk-offcanvas-bar">
       <button class="uk-offcanvas-close" type="button" uk-close></button>
 
-      <h3 class="uk-margin-small-bottom">🍦 Dulce Frío</h3>
-      <p class="uk-text-small uk-margin-remove-top">Helados, paletas y bolis por caja.</p>
-
-      <ul class="uk-nav uk-nav-default uk-margin-top">
-        <li><a href="#productos" uk-toggle>Productos</a></li>
-        <li><a href="#packs" uk-toggle>Packs</a></li>
-        <li><a href="#nosotros" uk-toggle>Nosotros</a></li>
-        <li><a href="#faq" uk-toggle>FAQ</a></li>
-        <li><a href="#contacto" uk-toggle>Contacto</a></li>
+      <h3>🍦 FrostyLotes</h3>
+      <ul class="uk-nav uk-nav-default">
+        <li><a href="#inicio" uk-toggle="target: #menu-movil">Inicio</a></li>
+        <li><a href="#productos" uk-toggle="target: #menu-movil">Productos</a></li>
+        <li><a href="#sabores" uk-toggle="target: #menu-movil">Sabores</a></li>
+        <li><a href="#empresa" uk-toggle="target: #menu-movil">Empresa</a></li>
+        <li><a href="#pedido" uk-toggle="target: #menu-movil">Pedido</a></li>
+        <li><a href="#contacto" uk-toggle="target: #menu-movil">Contacto</a></li>
       </ul>
-
-      <div class="uk-margin-top">
-        <a class="uk-button uk-button-primary uk-width-1-1 uk-border-pill" href="#contacto" uk-toggle>
-          Pedir ahora
-        </a>
-      </div>
     </div>
   </div>
 
   <!-- HERO -->
-  <div class="uk-container uk-margin-large-top">
-    <div class="hero-bg uk-padding-large uk-light soft-shadow">
+  <div id="inicio" class="uk-container uk-margin-top">
+    <div class="uk-card uk-card-default uk-card-body hero soft-shadow">
       <div class="uk-grid-large uk-flex-middle" uk-grid>
-        <div class="uk-width-1-1 uk-width-3-5@m">
-          <span class="uk-label badge-pack uk-margin-small-bottom">📦 Vendemos por pack de 12</span>
+        <div class="uk-width-expand@m">
+          <div class="hero-badge">
+            <span uk-icon="bolt"></span>
+            Venta por lotes (12 unidades)
+          </div>
 
           <h1 class="uk-heading-medium uk-margin-small-top">
-            Helados, Paletas y Bolis para tu negocio o tu familia
+            Helados, Paletas y Bolis<br>
+            para tu negocio o evento 🎉
           </h1>
 
-          <p class="uk-text-lead uk-margin-small-top">
-            Sabor artesanal, entrega rápida y precios por caja. Ideal para minisúpers, pulperías, eventos o reventa.
+          <p class="uk-text-lead uk-margin-remove-top">
+            Ideal para pulperías, minisúpers, sodas, eventos, fiestas y ventas.
+            Pedidos rápidos, sabores variados y excelente margen de ganancia.
           </p>
 
-          <div class="uk-margin-medium-top uk-flex uk-flex-wrap uk-flex-middle uk-grid-small" uk-grid>
+          <div class="uk-flex uk-flex-wrap uk-grid-small" uk-grid>
             <div>
-              <a class="uk-button uk-button-primary uk-button-large uk-border-pill" href="#packs">
-                Ver packs
+              <a href="#pedido" class="uk-button uk-button-primary uk-button-large">
+                Hacer pedido
               </a>
             </div>
             <div>
-              <a class="uk-button uk-button-default uk-button-large uk-border-pill" href="#productos">
-                Ver catálogo
+              <a href="#productos" class="uk-button uk-button-default uk-button-large">
+                Ver productos
               </a>
             </div>
           </div>
 
-          <div class="uk-margin-medium-top uk-grid-small uk-child-width-auto" uk-grid>
-            <div><span uk-icon="icon: check"></span> Entregas programadas</div>
-            <div><span uk-icon="icon: check"></span> Precios por volumen</div>
-            <div><span uk-icon="icon: check"></span> Sabores premium</div>
+          <div class="uk-margin-top uk-text-small uk-text-muted">
+            🚚 Entrega por zona • 🧊 Conservación garantizada • 📦 Venta al por mayor
           </div>
         </div>
 
-        <div class="uk-width-1-1 uk-width-2-5@m">
-          <div class="uk-card uk-card-default uk-card-body section-card soft-shadow">
-            <h3 class="uk-card-title uk-margin-small-bottom">📌 Pedido rápido</h3>
-
-            <form>
-              <div class="uk-margin">
-                <input class="uk-input uk-border-pill" type="text" placeholder="Nombre o negocio">
-              </div>
-
-              <div class="uk-margin">
-                <input class="uk-input uk-border-pill" type="tel" placeholder="Teléfono">
-              </div>
-
-              <div class="uk-margin">
-                <select class="uk-select uk-border-pill">
-                  <option>¿Qué querés pedir?</option>
-                  <option>Paletas (pack de 12)</option>
-                  <option>Bolis (pack de 12)</option>
-                  <option>Helados (pack de 12)</option>
-                  <option>Mezclado (pack de 12)</option>
-                </select>
-              </div>
-
-              <div class="uk-margin">
-                <input class="uk-input uk-border-pill" type="number" placeholder="Cantidad de packs (Ej: 2)">
-              </div>
-
-              <div class="uk-margin">
-                <button type="button" class="uk-button uk-button-primary uk-width-1-1 uk-border-pill">
-                  Solicitar cotización
-                </button>
-              </div>
-
-              <p class="uk-text-small uk-margin-remove">
-                * Este formulario es informativo. El pedido final se confirma por WhatsApp o llamada.
-              </p>
-            </form>
+        <div class="uk-width-1-3@m uk-visible@m">
+          <div class="uk-card uk-card-default uk-card-body section-card">
+            <h3 class="uk-card-title">📌 Promoción del mes</h3>
+            <p class="uk-margin-small-top">
+              Lote mixto (12 unidades) con 4 sabores:
+              <strong>Fresa, Mango, Chocolate y Oreo</strong>.
+            </p>
+            <div class="uk-alert-primary" uk-alert>
+              <p class="uk-margin-remove">🎁 Incluye bolsa térmica en pedidos grandes.</p>
+            </div>
           </div>
         </div>
 
@@ -184,386 +228,422 @@
 
   <!-- PRODUCTOS -->
   <div id="productos" class="uk-container uk-margin-large-top">
-    <h2 class="uk-heading-small">🍧 Productos más vendidos</h2>
-    <p class="uk-text-muted">Podés reutilizar esta sección para cualquier negocio (ropa, ferretería, etc.).</p>
-
-    <div class="uk-grid-match uk-child-width-1-2@s uk-child-width-1-3@m uk-margin-medium-top" uk-grid>
-
-      <div>
-        <div class="uk-card uk-card-default uk-card-body section-card soft-shadow">
-          <h3 class="uk-card-title">Paletas frutales</h3>
-          <p class="uk-text-small uk-text-muted">Fresa • Mango • Piña • Uva</p>
-          <p>Perfectas para reventa. Alta rotación.</p>
-          <span class="uk-label">Pack 12 unidades</span>
-        </div>
-      </div>
-
-      <div>
-        <div class="uk-card uk-card-default uk-card-body section-card soft-shadow">
-          <h3 class="uk-card-title">Bolis cremosos</h3>
-          <p class="uk-text-small uk-text-muted">Vainilla • Chocolate • Cookies</p>
-          <p>El favorito de niños y adultos.</p>
-          <span class="uk-label">Pack 12 unidades</span>
-        </div>
-      </div>
-
-      <div>
-        <div class="uk-card uk-card-default uk-card-body section-card soft-shadow">
-          <h3 class="uk-card-title">Helados premium</h3>
-          <p class="uk-text-small uk-text-muted">Oreo • Menta • Café • Caramelo</p>
-          <p>Más margen para negocios.</p>
-          <span class="uk-label">Pack 12 unidades</span>
-        </div>
-      </div>
-
-      <div>
-        <div class="uk-card uk-card-default uk-card-body section-card soft-shadow">
-          <h3 class="uk-card-title">Combo familiar</h3>
-          <p class="uk-text-small uk-text-muted">Mix de sabores</p>
-          <p>Ideal para eventos o fines de semana.</p>
-          <span class="uk-label uk-label-success">Pack mixto</span>
-        </div>
-      </div>
-
-      <div>
-        <div class="uk-card uk-card-default uk-card-body section-card soft-shadow">
-          <h3 class="uk-card-title">Pack para minisúper</h3>
-          <p class="uk-text-small uk-text-muted">Alta rotación</p>
-          <p>Diseñado para vender rápido y reponer fácil.</p>
-          <span class="uk-label uk-label-warning">Negocios</span>
-        </div>
-      </div>
-
-      <div>
-        <div class="uk-card uk-card-default uk-card-body section-card soft-shadow">
-          <h3 class="uk-card-title">Pack personalizado</h3>
-          <p class="uk-text-small uk-text-muted">Vos elegís los sabores</p>
-          <p>Armamos el pack según disponibilidad.</p>
-          <span class="uk-label uk-label-danger">Personalizado</span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- PACKS -->
-  <div id="packs" class="uk-container uk-margin-large-top">
-    <h2 class="uk-heading-small">📦 Packs de 12 (modelo de venta)</h2>
-    <p class="uk-text-muted">
-      Esto es lo más importante: NO vendemos una unidad, vendemos por caja (ideal para 1 o 1000 negocios).
+    <h2 class="uk-heading-small">🛒 Productos</h2>
+    <p class="uk-text-muted uk-margin-remove-top">
+      Todo se vende por lotes de 12 unidades (para que sea rentable y fácil de manejar).
     </p>
 
-    <div class="uk-grid-match uk-child-width-1-1 uk-child-width-1-3@m uk-margin-medium-top" uk-grid>
+    <div class="uk-child-width-1-1 uk-child-width-1-3@m uk-grid-medium force-3cols" uk-grid>
 
       <div>
-        <div class="uk-card uk-card-default uk-card-body section-card soft-shadow">
-          <h3 class="uk-card-title">Pack Básico</h3>
-          <p class="uk-text-large uk-margin-small">12 unidades</p>
-          <ul class="uk-list uk-list-bullet">
-            <li>1 sabor</li>
-            <li>Entrega rápida</li>
-            <li>Ideal para familia</li>
-          </ul>
-          <a class="uk-button uk-button-primary uk-width-1-1 uk-border-pill" href="#contacto">Pedir</a>
-        </div>
-      </div>
-
-      <div>
-        <div class="uk-card uk-card-primary uk-card-body section-card soft-shadow">
-          <h3 class="uk-card-title">Pack Negocio ⭐</h3>
-          <p class="uk-text-large uk-margin-small">12 unidades</p>
-          <ul class="uk-list uk-list-bullet">
-            <li>2 sabores</li>
-            <li>Precio por volumen</li>
-            <li>Recomendado para reventa</li>
-          </ul>
-          <a class="uk-button uk-button-default uk-width-1-1 uk-border-pill" href="#contacto">Pedir</a>
-        </div>
-      </div>
-
-      <div>
-        <div class="uk-card uk-card-default uk-card-body section-card soft-shadow">
-          <h3 class="uk-card-title">Pack Mixto</h3>
-          <p class="uk-text-large uk-margin-small">12 unidades</p>
-          <ul class="uk-list uk-list-bullet">
-            <li>3 sabores</li>
-            <li>Para eventos</li>
-            <li>Ideal para cumpleaños</li>
-          </ul>
-          <a class="uk-button uk-button-primary uk-width-1-1 uk-border-pill" href="#contacto">Pedir</a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- NOSOTROS -->
-  <div id="nosotros" class="uk-container uk-margin-large-top">
-    <div class="uk-grid-large uk-flex-middle" uk-grid>
-      <div class="uk-width-1-1 uk-width-1-2@m">
-        <h2 class="uk-heading-small">👋 ¿Quiénes somos?</h2>
-        <p class="uk-text-lead">
-          Somos <b>Dulce Frío</b>, una empresa dedicada a fabricar helados, paletas y bolis artesanales.
-        </p>
-        <p>
-          Nuestra idea es simple: vender en <b>packs de 12</b> para ofrecer un precio justo,
-          facilitar la logística y permitir reventa a negocios pequeños.
-        </p>
-
-        <div class="uk-grid-small uk-child-width-1-1 uk-child-width-1-3@s uk-margin-medium-top" uk-grid>
-          <div>
-            <div class="uk-card uk-card-default uk-card-body section-card soft-shadow">
-              <h4 class="uk-margin-remove">🎯 Misión</h4>
-              <p class="uk-margin-small-top uk-text-small">
-                (Aquí ponés tu misión real)
-              </p>
-            </div>
-          </div>
-
-          <div>
-            <div class="uk-card uk-card-default uk-card-body section-card soft-shadow">
-              <h4 class="uk-margin-remove">🚀 Visión</h4>
-              <p class="uk-margin-small-top uk-text-small">
-                (Aquí ponés tu visión real)
-              </p>
-            </div>
-          </div>
-
-          <div>
-            <div class="uk-card uk-card-default uk-card-body section-card soft-shadow">
-              <h4 class="uk-margin-remove">💎 Valores</h4>
-              <p class="uk-margin-small-top uk-text-small">
-                (Aquí ponés tus valores reales)
-              </p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="uk-width-1-1 uk-width-1-2@m">
-        <div class="uk-card uk-card-default uk-card-body section-card soft-shadow">
-          <h3 class="uk-card-title">📊 ¿Por qué vendemos por pack?</h3>
+        <div class="uk-card uk-card-default uk-card-body product-card soft-shadow">
+          <h3 class="uk-card-title">🍦 Helados</h3>
+          <p>Clásicos y cremosos. Perfectos para minisúper o venta rápida.</p>
           <ul class="uk-list uk-list-divider">
-            <li><b>Más barato:</b> precio por volumen</li>
-            <li><b>Más rápido:</b> entregas y pedidos fáciles</li>
-            <li><b>Más rentable:</b> ideal para reventa</li>
-            <li><b>Más orden:</b> inventario claro (12 por caja)</li>
+            <li>✔ Lote: 12 unidades</li>
+            <li>✔ Sabores mixtos</li>
+            <li>✔ Alta rotación</li>
           </ul>
-        </div>
-
-   <div class="uk-card uk-card-default uk-card-body section-card soft-shadow uk-margin-top">
-  <h3 class="uk-card-title">🧊 Sabores disponibles</h3>
-
-  <div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-grid-small" uk-grid>
-    
-    <div><div class="uk-card uk-card-default uk-card-body uk-padding-small uk-border-rounded">
-      🍓 Fresa
-    </div></div>
-
-    <div><div class="uk-card uk-card-default uk-card-body uk-padding-small uk-border-rounded">
-      🥭 Mango
-    </div></div>
-
-    <div><div class="uk-card uk-card-default uk-card-body uk-padding-small uk-border-rounded">
-      🍍 Piña
-    </div></div>
-
-    <div><div class="uk-card uk-card-default uk-card-body uk-padding-small uk-border-rounded">
-      🍫 Chocolate
-    </div></div>
-
-    <div><div class="uk-card uk-card-default uk-card-body uk-padding-small uk-border-rounded">
-      🍪 Oreo
-    </div></div>
-
-    <div><div class="uk-card uk-card-default uk-card-body uk-padding-small uk-border-rounded">
-      ☕ Café
-    </div></div>
-
-    <div><div class="uk-card uk-card-default uk-card-body uk-padding-small uk-border-rounded">
-      🍮 Caramelo
-    </div></div>
-
-    <div><div class="uk-card uk-card-default uk-card-body uk-padding-small uk-border-rounded">
-      🍇 Uva
-    </div></div>
-
-  </div>
-</div>
-
-
-      </div>
-    </div>
-  </div>
-
-  <!-- TESTIMONIOS -->
-  <div class="uk-container uk-margin-large-top">
-    <h2 class="uk-heading-small">⭐ Opiniones</h2>
-    <div class="uk-grid-match uk-child-width-1-1 uk-child-width-1-3@m uk-margin-medium-top" uk-grid>
-
-      <div>
-        <div class="uk-card uk-card-default uk-card-body section-card soft-shadow">
-          <p class="uk-text-lead">“Se venden rapidísimo, buen margen.”</p>
-          <p class="uk-text-small uk-text-muted">— Minisúper La Esquina</p>
+          <button class="uk-button uk-button-primary" onclick="abrirPreview('Helados')">
+            Guardar (preview)
+          </button>
         </div>
       </div>
 
       <div>
-        <div class="uk-card uk-card-default uk-card-body section-card soft-shadow">
-          <p class="uk-text-lead">“Los bolis cremosos son otro nivel.”</p>
-          <p class="uk-text-small uk-text-muted">— Cliente frecuente</p>
+        <div class="uk-card uk-card-default uk-card-body product-card soft-shadow">
+          <h3 class="uk-card-title">🍭 Paletas</h3>
+          <p>Frutales, refrescantes y muy vendibles en clima caliente.</p>
+          <ul class="uk-list uk-list-divider">
+            <li>✔ Lote: 12 unidades</li>
+            <li>✔ Frutales + cremosas</li>
+            <li>✔ Ideal para eventos</li>
+          </ul>
+          <button class="uk-button uk-button-primary" onclick="abrirPreview('Paletas')">
+            Guardar (preview)
+          </button>
         </div>
       </div>
 
       <div>
-        <div class="uk-card uk-card-default uk-card-body section-card soft-shadow">
-          <p class="uk-text-lead">“Packs mixtos para eventos, recomendados.”</p>
-          <p class="uk-text-small uk-text-muted">— Organizador de eventos</p>
+        <div class="uk-card uk-card-default uk-card-body product-card soft-shadow">
+          <h3 class="uk-card-title">🧊 Bolis</h3>
+          <p>Congelados tipo “bolis” para venta masiva y buen margen.</p>
+          <ul class="uk-list uk-list-divider">
+            <li>✔ Lote: 12 unidades</li>
+            <li>✔ Sabores tropicales</li>
+            <li>✔ Muy económicos</li>
+          </ul>
+          <button class="uk-button uk-button-primary" onclick="abrirPreview('Bolis')">
+            Guardar (preview)
+          </button>
         </div>
       </div>
 
     </div>
   </div>
 
-  <!-- FAQ -->
-  <div id="faq" class="uk-container uk-margin-large-top">
-    <h2 class="uk-heading-small">❓ Preguntas frecuentes</h2>
+  <!-- SABORES -->
+  <div id="sabores" class="uk-container uk-margin-large-top">
+    <div class="uk-card uk-card-default uk-card-body section-card soft-shadow">
+      <h2 class="uk-card-title">🧊 Sabores disponibles</h2>
+      <p class="uk-text-muted uk-margin-remove-top">
+        Podés pedir sabores mixtos por lote.
+      </p>
 
-    <ul uk-accordion class="uk-margin-medium-top">
-      <li class="uk-open">
-        <a class="uk-accordion-title" href="#">¿Venden por unidad?</a>
-        <div class="uk-accordion-content">
-          <p>No. Vendemos por pack de 12 unidades para mantener precios bajos y logística fácil.</p>
-        </div>
-      </li>
+      <!-- Lista bonita en columnas -->
+      <div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-grid-small force-3cols" uk-grid>
 
-      <li>
-        <a class="uk-accordion-title" href="#">¿Hacen entregas?</a>
-        <div class="uk-accordion-content">
-          <p>Sí, hacemos entregas programadas dependiendo de la zona.</p>
-        </div>
-      </li>
+        <div><div class="uk-card uk-card-default uk-card-body uk-padding-small flavor-pill">🍓 Fresa</div></div>
+        <div><div class="uk-card uk-card-default uk-card-body uk-padding-small flavor-pill">🥭 Mango</div></div>
+        <div><div class="uk-card uk-card-default uk-card-body uk-padding-small flavor-pill">🍍 Piña</div></div>
+        <div><div class="uk-card uk-card-default uk-card-body uk-padding-small flavor-pill">🍫 Chocolate</div></div>
+        <div><div class="uk-card uk-card-default uk-card-body uk-padding-small flavor-pill">🍪 Oreo</div></div>
+        <div><div class="uk-card uk-card-default uk-card-body uk-padding-small flavor-pill">☕ Café</div></div>
+        <div><div class="uk-card uk-card-default uk-card-body uk-padding-small flavor-pill">🍮 Caramelo</div></div>
+        <div><div class="uk-card uk-card-default uk-card-body uk-padding-small flavor-pill">🍇 Uva</div></div>
 
-      <li>
-        <a class="uk-accordion-title" href="#">¿Puedo escoger sabores?</a>
-        <div class="uk-accordion-content">
-          <p>Sí, en el pack personalizado podés elegir según disponibilidad.</p>
-        </div>
-      </li>
-
-      <li>
-        <a class="uk-accordion-title" href="#">¿Esto sirve para reventa?</a>
-        <div class="uk-accordion-content">
-          <p>Totalmente. Este modelo está pensado para minisúpers, pulperías y eventos.</p>
-        </div>
-      </li>
-    </ul>
+      </div>
+    </div>
   </div>
 
-  <!-- CONTACTO -->
-  <div id="contacto" class="uk-container uk-margin-large-top uk-margin-large-bottom">
-    <h2 class="uk-heading-small">📞 Contacto</h2>
-    <p class="uk-text-muted">Dejá tus datos o escribinos directo por WhatsApp.</p>
+  <!-- EMPRESA -->
+  <div id="empresa" class="uk-container uk-margin-large-top">
+    <h2 class="uk-heading-small">🏢 Sobre la empresa</h2>
 
-    <div class="uk-grid-large uk-margin-medium-top" uk-grid>
-      <div class="uk-width-1-1 uk-width-1-2@m">
+    <div class="uk-child-width-1-1 uk-child-width-1-3@m uk-grid-medium force-3cols" uk-grid>
+
+      <div>
         <div class="uk-card uk-card-default uk-card-body section-card soft-shadow">
-          <h3 class="uk-card-title">Formulario</h3>
+          <h3 class="uk-card-title">👋 Quiénes somos</h3>
+          <p>
+            Somos una empresa enfocada en distribución de productos congelados
+            por lotes para negocios, eventos y emprendedores.
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <div class="uk-card uk-card-default uk-card-body section-card soft-shadow">
+          <h3 class="uk-card-title">🎯 Misión</h3>
+          <p>
+            Ofrecer helados y congelados por lote con calidad, variedad y
+            servicio rápido, ayudando a otros negocios a crecer.
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <div class="uk-card uk-card-default uk-card-body section-card soft-shadow">
+          <h3 class="uk-card-title">🚀 Visión</h3>
+          <p>
+            Ser una marca reconocida en Costa Rica por la distribución eficiente
+            y la experiencia de compra fácil.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="uk-card uk-card-default uk-card-body section-card soft-shadow uk-margin-top">
+      <h3 class="uk-card-title">💎 Valores</h3>
+      <div class="uk-child-width-1-2@s uk-child-width-1-4@m uk-grid-small force-3cols" uk-grid>
+        <div><div class="uk-card uk-card-default uk-card-body uk-padding-small flavor-pill">🤝 Confianza</div></div>
+        <div><div class="uk-card uk-card-default uk-card-body uk-padding-small flavor-pill">⚡ Rapidez</div></div>
+        <div><div class="uk-card uk-card-default uk-card-body uk-padding-small flavor-pill">🧼 Calidad</div></div>
+        <div><div class="uk-card uk-card-default uk-card-body uk-padding-small flavor-pill">📦 Orden</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PEDIDO (FORM + TABLA) -->
+  <div id="pedido" class="uk-container uk-margin-large-top">
+    <h2 class="uk-heading-small">🧾 Formulario de pedido</h2>
+    <p class="uk-text-muted uk-margin-remove-top">
+      Ejemplo para que veás un diseño listo. Vos luego lo conectás con BD o WhatsApp.
+    </p>
+
+    <div class="uk-grid-medium" uk-grid>
+      <div class="uk-width-1-2@m">
+        <div class="uk-card uk-card-default uk-card-body section-card soft-shadow">
 
           <form>
             <div class="uk-margin">
-              <label class="uk-form-label">Nombre</label>
-              <input class="uk-input uk-border-pill" type="text" placeholder="Tu nombre">
+              <label class="uk-form-label">Nombre del cliente</label>
+              <div class="uk-form-controls">
+                <input class="uk-input" type="text" placeholder="Ej: Jason Víquez" />
+              </div>
             </div>
 
             <div class="uk-margin">
               <label class="uk-form-label">Teléfono</label>
-              <input class="uk-input uk-border-pill" type="tel" placeholder="Ej: 8888-8888">
+              <div class="uk-form-controls">
+                <input class="uk-input" type="tel" placeholder="Ej: 8888-8888" />
+              </div>
+            </div>
+
+            <div class="uk-grid-small" uk-grid>
+              <div class="uk-width-1-2@s">
+                <label class="uk-form-label">Fecha de entrega</label>
+                <input class="uk-input" type="date" />
+              </div>
+              <div class="uk-width-1-2@s">
+                <label class="uk-form-label">Cantidad de lotes</label>
+                <input class="uk-input" type="number" min="1" value="1" />
+              </div>
             </div>
 
             <div class="uk-margin">
-              <label class="uk-form-label">Correo</label>
-              <input class="uk-input uk-border-pill" type="email" placeholder="correo@email.com">
+              <label class="uk-form-label">Producto</label>
+              <select class="uk-select">
+                <option>Helados</option>
+                <option>Paletas</option>
+                <option>Bolis</option>
+                <option>Mixto</option>
+              </select>
             </div>
 
             <div class="uk-margin">
-              <label class="uk-form-label">Mensaje</label>
-              <textarea class="uk-textarea" rows="4" placeholder="Ej: Quiero 5 packs mixtos para este fin de semana..."></textarea>
+              <label class="uk-form-label">Zona de entrega</label>
+              <select class="uk-select">
+                <option>San José</option>
+                <option>Heredia</option>
+                <option>Alajuela</option>
+                <option>Cartago</option>
+                <option>Guanacaste</option>
+              </select>
             </div>
 
-            <button type="button" class="uk-button uk-button-primary uk-width-1-1 uk-border-pill">
-              Enviar
-            </button>
+            <div class="uk-margin">
+              <label class="uk-form-label">Notas</label>
+              <textarea class="uk-textarea" rows="3" placeholder="Ej: dejar en recepción, llamar antes..."></textarea>
+            </div>
 
-            <p class="uk-text-small uk-margin-small-top">
-              * Esto es informativo. Podés conectarlo después a WhatsApp, correo o una BD.
-            </p>
+            <div class="uk-flex uk-flex-wrap uk-grid-small" uk-grid>
+              <div>
+                <button type="button" class="uk-button uk-button-primary" onclick="abrirPreview('Pedido')">
+                  Guardar (preview)
+                </button>
+              </div>
+              <div>
+                <button type="reset" class="uk-button uk-button-default">
+                  Limpiar
+                </button>
+              </div>
+            </div>
+
           </form>
+
         </div>
       </div>
 
-      <div class="uk-width-1-1 uk-width-1-2@m">
+      <div class="uk-width-1-2@m">
         <div class="uk-card uk-card-default uk-card-body section-card soft-shadow">
-          <h3 class="uk-card-title">Información</h3>
+          <h3 class="uk-card-title">📋 Pedidos recientes (demo)</h3>
+
+          <div class="uk-overflow-auto">
+            <table class="uk-table uk-table-divider uk-table-hover uk-table-small">
+              <thead>
+                <tr>
+                  <th>Cliente</th>
+                  <th>Producto</th>
+                  <th>Lotes</th>
+                  <th>Entrega</th>
+                  <th>Zona</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>María</td><td>Paletas</td><td>3</td><td>2026-02-10</td><td>Heredia</td></tr>
+                <tr><td>Kevin</td><td>Helados</td><td>2</td><td>2026-02-11</td><td>San José</td></tr>
+                <tr><td>Andrea</td><td>Mixto</td><td>5</td><td>2026-02-12</td><td>Alajuela</td></tr>
+                <tr><td>José</td><td>Bolis</td><td>4</td><td>2026-02-12</td><td>Cartago</td></tr>
+                <tr><td>Sofía</td><td>Helados</td><td>1</td><td>2026-02-13</td><td>San José</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="uk-alert-primary" uk-alert>
+            <p class="uk-margin-remove">
+              💡 Esto es demo. Luego se conecta a base de datos, WhatsApp o formulario real.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACTO -->
+  <div id="contacto" class="uk-container uk-margin-large-top uk-margin-large-bottom">
+    <div class="uk-card uk-card-default uk-card-body section-card soft-shadow">
+      <h2 class="uk-card-title">📞 Contacto</h2>
+
+      <div class="uk-grid-medium uk-flex-middle" uk-grid>
+        <div class="uk-width-expand@m">
+          <p class="uk-text-lead uk-margin-remove-top">
+            ¿Querés cotizar por WhatsApp o hacer un pedido grande?
+          </p>
 
           <ul class="uk-list uk-list-divider">
-            <li><b>📍 Ubicación:</b> (Tu ubicación)</li>
-            <li><b>🕐 Horario:</b> Lunes a Sábado 9am - 6pm</li>
-            <li><b>📦 Entregas:</b> Programadas por zona</li>
-            <li><b>💳 Pago:</b> SINPE / Efectivo / Transferencia</li>
+            <li>📍 Costa Rica</li>
+            <li>🕒 Lunes a Sábado (8am - 6pm)</li>
+            <li>📦 Pedidos por lote (12 unidades)</li>
           </ul>
+        </div>
 
-          <div class="uk-margin-top">
-            <a class="uk-button uk-button-default uk-width-1-1 uk-border-pill" href="#">
-              Ver catálogo PDF
-            </a>
-          </div>
+        <div class="uk-width-1-3@m">
+          <a class="uk-button uk-button-primary uk-button-large uk-width-1-1" href="https://wa.me/50688888888" target="_blank">
+            <span uk-icon="whatsapp"></span>
+            WhatsApp
+          </a>
 
-          <div class="uk-margin-top">
-            <a class="uk-button uk-button-primary uk-width-1-1 uk-border-pill" href="#">
-              Escribir por WhatsApp
-            </a>
-          </div>
-
+          <a class="uk-button uk-button-default uk-button-large uk-width-1-1 uk-margin-small-top" href="mailto:ventas@frostylotes.com">
+            <span uk-icon="mail"></span>
+            Correo
+          </a>
         </div>
       </div>
     </div>
   </div>
 
   <!-- FOOTER -->
-  <footer class="uk-section uk-section-small uk-section-muted">
-    <div class="uk-container">
-      <div class="uk-grid-small uk-child-width-1-2@m" uk-grid>
-        <div>
-          <h4 class="uk-margin-remove">🍦 Dulce Frío</h4>
-          <p class="uk-text-small uk-margin-small-top uk-text-muted">
-            Helados, paletas y bolis por pack de 12. Página informativa lista para reutilizar.
+  <div class="uk-container uk-margin-large-bottom">
+    <div class="uk-card uk-card-body footer">
+      <div class="uk-grid-medium" uk-grid>
+        <div class="uk-width-expand@m">
+          <h3 class="uk-margin-remove">🍦 FrostyLotes</h3>
+          <p class="uk-margin-small-top">
+            Plantilla reutilizable para cualquier negocio (helados, comida, ferretería, servicios, etc).
           </p>
         </div>
 
-        <div class="uk-text-right@m">
-          <p class="uk-text-small uk-margin-remove">
-            © 2026 - Todos los derechos reservados
-          </p>
-          <p class="uk-text-small uk-margin-remove">
-            Hecho con UIkit + VS Code
-          </p>
+        <div class="uk-width-1-3@m">
+          <h4 class="uk-margin-remove">Links</h4>
+          <ul class="uk-list uk-margin-small-top">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#productos">Productos</a></li>
+            <li><a href="#pedido">Pedido</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+          </ul>
         </div>
       </div>
-    </div>
-  </footer>
 
-  <!-- WhatsApp flotante -->
-  <div class="floating-whatsapp">
-    <a class="uk-button uk-button-primary uk-border-pill" href="#contacto" uk-scroll>
-      💬 WhatsApp
-    </a>
+      <hr class="uk-divider-small" />
+
+      <div class="uk-flex uk-flex-between uk-flex-middle uk-flex-wrap">
+        <div>© 2026 FrostyLotes. Demo UIkit.</div>
+        <div class="uk-text-small">Hecho con UIkit + VS Code 💙</div>
+      </div>
+    </div>
   </div>
 
-  <!-- UIkit JS -->
-  <script src="https://cdn.jsdelivr.net/npm/uikit@3.20.10/dist/js/uikit.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/uikit@3.20.10/dist/js/uikit-icons.min.js"></script>
+  <!-- BOTÓN FLOTANTE (Modo PC / Móvil) -->
+  <button id="toggleModo" class="uk-button uk-button-primary btn-float">
+    <span uk-icon="phone"></span>
+    Modo móvil
+  </button>
+
+  <!-- MODAL PREVIEW (POPUP) -->
+  <div id="modal-preview" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body section-card">
+      <h2 class="uk-modal-title">✅ Guardado (preview)</h2>
+      <p class="uk-text-muted" id="preview-text">
+        Vista previa del diseño.
+      </p>
+
+      <div class="uk-overflow-auto uk-margin-top">
+        <table class="uk-table uk-table-divider uk-table-hover uk-table-small">
+          <thead>
+            <tr>
+              <th>Producto</th>
+              <th>Lote</th>
+              <th>Sabores</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td id="preview-product">Helados</td>
+              <td>12 unidades</td>
+              <td>Mixto</td>
+              <td><span class="uk-label uk-label-success">OK</span></td>
+            </tr>
+            <tr>
+              <td>Paletas</td>
+              <td>12 unidades</td>
+              <td>Frutales</td>
+              <td><span class="uk-label uk-label-success">OK</span></td>
+            </tr>
+            <tr>
+              <td>Bolis</td>
+              <td>12 unidades</td>
+              <td>Tropical</td>
+              <td><span class="uk-label uk-label-warning">Pendiente</span></td>
+            </tr>
+            <tr>
+              <td>Mixto</td>
+              <td>24 unidades</td>
+              <td>2 sabores</td>
+              <td><span class="uk-label uk-label-success">OK</span></td>
+            </tr>
+            <tr>
+              <td>Helados</td>
+              <td>36 unidades</td>
+              <td>Premium</td>
+              <td><span class="uk-label uk-label-danger">Sin stock</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="uk-text-right uk-margin-top">
+        <button class="uk-button uk-button-default uk-modal-close">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script>
+    // ===== Modal preview (al dar Guardar) =====
+    function abrirPreview(producto) {
+      document.getElementById("preview-product").innerText = producto;
+      document.getElementById("preview-text").innerText =
+        "Esto es una vista previa del diseño al presionar Guardar. Producto seleccionado: " + producto;
+
+      UIkit.modal("#modal-preview").show();
+    }
+
+    // ===== Botón flotante: Modo PC / Modo móvil =====
+    const btn = document.getElementById("toggleModo");
+
+    function refrescarTextoBoton() {
+      if (document.body.classList.contains("modo-pc")) {
+        btn.innerHTML = `<span uk-icon="desktop"></span> Modo PC`;
+      } else {
+        btn.innerHTML = `<span uk-icon="phone"></span> Modo móvil`;
+      }
+      UIkit.icon(btn.querySelector("span")); // refresca icono
+    }
+
+    // cargar preferencia
+    if (localStorage.getItem("modo") === "pc") {
+      document.body.classList.add("modo-pc");
+    }
+
+    refrescarTextoBoton();
+
+    btn.addEventListener("click", () => {
+      document.body.classList.toggle("modo-pc");
+
+      if (document.body.classList.contains("modo-pc")) {
+        localStorage.setItem("modo", "pc");
+      } else {
+        localStorage.setItem("modo", "movil");
+      }
+
+      refrescarTextoBoton();
+    });
+  </script>
 
 </body>
 </html>
