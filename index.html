@@ -3,473 +3,540 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Demo Frameworks CSS con Modales</title>
+  <title>Dulce Frío - Helados, Paletas y Bolis (Packs de 12)</title>
 
-  <!-- 1) BOOTSTRAP -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- 2) TAILWIND -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- 3) BULMA -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
-
-  <!-- 4) MATERIALIZE -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
-  <!-- 5) UIKIT -->
+  <!-- UIkit CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.20.10/dist/css/uikit.min.css" />
 
   <style>
+    /* Personalización ligera para que se vea más premium */
     body {
-      background: #f6f7fb;
-      padding: 20px;
-      font-family: Arial, sans-serif;
+      background: #fafafa;
     }
 
-    .demo-section {
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      margin-bottom: 30px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+    .hero-bg {
+      background: linear-gradient(120deg, rgba(0,0,0,0.65), rgba(0,0,0,0.35)),
+        url("https://images.unsplash.com/photo-1563805042-7684c019e1cb?q=80&w=1600&auto=format&fit=crop");
+      background-size: cover;
+      background-position: center;
+      border-radius: 18px;
+      overflow: hidden;
     }
 
-    .demo-title {
-      font-size: 20px;
-      font-weight: bold;
-      margin-bottom: 15px;
-      padding-bottom: 8px;
-      border-bottom: 2px solid #ddd;
+    .section-card {
+      border-radius: 18px;
+    }
+
+    .soft-shadow {
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    }
+
+    .badge-pack {
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-weight: 600;
+    }
+
+    .floating-whatsapp {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 999;
     }
   </style>
 </head>
 
 <body>
 
-  <h1 style="margin-bottom: 25px;">📌 Demo de 5 frameworks CSS (con Popups/Modales)</h1>
-
-  <!-- =========================================================
-       1) BOOTSTRAP
-  ========================================================== -->
-  <section class="demo-section">
-    <div class="demo-title">1) Bootstrap</div>
-
-    <form class="row g-3">
-      <div class="col-md-4">
-        <label class="form-label">Nombre</label>
-        <input type="text" class="form-control" placeholder="Ej: Jason">
+  <!-- NAVBAR -->
+  <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; end: 200; offset: 0">
+    <nav class="uk-navbar-container uk-navbar-transparent uk-padding-small" uk-navbar>
+      <div class="uk-navbar-left">
+        <a class="uk-navbar-item uk-logo" href="#">
+          🍦 Dulce Frío
+        </a>
       </div>
 
-      <div class="col-md-4">
-        <label class="form-label">Edad</label>
-        <input type="number" class="form-control" placeholder="Ej: 25">
-      </div>
-
-      <div class="col-md-4">
-        <label class="form-label">Fecha</label>
-        <input type="date" class="form-control">
-      </div>
-
-      <div class="col-md-6">
-        <label class="form-label">Categoría</label>
-        <select class="form-select">
-          <option selected>Seleccione...</option>
-          <option>Cliente</option>
-          <option>Proveedor</option>
-          <option>Empleado</option>
-        </select>
-      </div>
-
-      <div class="col-md-6">
-        <label class="form-label">Monto</label>
-        <input type="number" class="form-control" placeholder="Ej: 15000">
-      </div>
-
-      <div class="col-12">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalBootstrap">
-          Guardar (Popup)
-        </button>
-      </div>
-    </form>
-  </section>
-
-  <!-- Modal Bootstrap -->
-  <div class="modal fade" id="modalBootstrap" tabindex="-1">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Bootstrap - Tabla en Modal</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        </div>
-        <div class="modal-body">
-          <table class="table table-striped table-hover">
-            <thead>
-              <tr>
-                <th>ID</th><th>Nombre</th><th>Edad</th><th>Fecha</th><th>Categoría</th><th>Monto</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>1</td><td>Ana</td><td>24</td><td>2026-02-01</td><td>Cliente</td><td>12000</td></tr>
-              <tr><td>2</td><td>Carlos</td><td>30</td><td>2026-02-02</td><td>Empleado</td><td>25000</td></tr>
-              <tr><td>3</td><td>María</td><td>28</td><td>2026-02-03</td><td>Proveedor</td><td>18000</td></tr>
-              <tr><td>4</td><td>José</td><td>35</td><td>2026-02-04</td><td>Cliente</td><td>9000</td></tr>
-              <tr><td>5</td><td>Lucía</td><td>22</td><td>2026-02-05</td><td>Empleado</td><td>30000</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- =========================================================
-       2) TAILWIND
-  ========================================================== -->
-  <section class="demo-section">
-    <div class="demo-title">2) Tailwind CSS</div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <div>
-        <label class="block font-semibold mb-1">Nombre</label>
-        <input class="w-full border rounded-lg p-2" type="text" placeholder="Ej: Jason">
-      </div>
-
-      <div>
-        <label class="block font-semibold mb-1">Edad</label>
-        <input class="w-full border rounded-lg p-2" type="number" placeholder="Ej: 25">
-      </div>
-
-      <div>
-        <label class="block font-semibold mb-1">Fecha</label>
-        <input class="w-full border rounded-lg p-2" type="date">
-      </div>
-
-      <div>
-        <label class="block font-semibold mb-1">Categoría</label>
-        <select class="w-full border rounded-lg p-2">
-          <option>Seleccione...</option>
-          <option>Cliente</option>
-          <option>Proveedor</option>
-          <option>Empleado</option>
-        </select>
-      </div>
-
-      <div>
-        <label class="block font-semibold mb-1">Monto</label>
-        <input class="w-full border rounded-lg p-2" type="number" placeholder="Ej: 15000">
-      </div>
-
-      <div class="flex items-end gap-2">
-        <button type="button" onclick="openTailwindModal()"
-          class="px-4 py-2 rounded-lg bg-black text-white">
-          Guardar (Popup)
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Modal Tailwind -->
-  <div id="tailwindModal" class="fixed inset-0 hidden items-center justify-center bg-black/50 z-50">
-    <div class="bg-white rounded-2xl shadow-xl w-[95%] max-w-4xl p-6">
-      <div class="flex items-center justify-between mb-4">
-        <h2 class="text-xl font-bold">Tailwind - Tabla en Modal</h2>
-        <button onclick="closeTailwindModal()" class="text-2xl font-bold">&times;</button>
-      </div>
-
-      <div class="overflow-auto">
-        <table class="w-full border border-gray-300">
-          <thead class="bg-gray-100">
-            <tr>
-              <th class="border p-2">ID</th>
-              <th class="border p-2">Nombre</th>
-              <th class="border p-2">Edad</th>
-              <th class="border p-2">Fecha</th>
-              <th class="border p-2">Categoría</th>
-              <th class="border p-2">Monto</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td class="border p-2">1</td><td class="border p-2">Ana</td><td class="border p-2">24</td><td class="border p-2">2026-02-01</td><td class="border p-2">Cliente</td><td class="border p-2">12000</td></tr>
-            <tr><td class="border p-2">2</td><td class="border p-2">Carlos</td><td class="border p-2">30</td><td class="border p-2">2026-02-02</td><td class="border p-2">Empleado</td><td class="border p-2">25000</td></tr>
-            <tr><td class="border p-2">3</td><td class="border p-2">María</td><td class="border p-2">28</td><td class="border p-2">2026-02-03</td><td class="border p-2">Proveedor</td><td class="border p-2">18000</td></tr>
-            <tr><td class="border p-2">4</td><td class="border p-2">José</td><td class="border p-2">35</td><td class="border p-2">2026-02-04</td><td class="border p-2">Cliente</td><td class="border p-2">9000</td></tr>
-            <tr><td class="border p-2">5</td><td class="border p-2">Lucía</td><td class="border p-2">22</td><td class="border p-2">2026-02-05</td><td class="border p-2">Empleado</td><td class="border p-2">30000</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="mt-4 flex justify-end gap-2">
-        <button onclick="closeTailwindModal()" class="px-4 py-2 rounded-lg border">
-          Cerrar
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- =========================================================
-       3) BULMA
-  ========================================================== -->
-  <section class="demo-section">
-    <div class="demo-title">3) Bulma</div>
-
-    <div class="columns is-multiline">
-      <div class="column is-4">
-        <label class="label">Nombre</label>
-        <input class="input" type="text" placeholder="Ej: Jason">
-      </div>
-
-      <div class="column is-4">
-        <label class="label">Edad</label>
-        <input class="input" type="number" placeholder="Ej: 25">
-      </div>
-
-      <div class="column is-4">
-        <label class="label">Fecha</label>
-        <input class="input" type="date">
-      </div>
-
-      <div class="column is-6">
-        <label class="label">Categoría</label>
-        <div class="select is-fullwidth">
-          <select>
-            <option>Seleccione...</option>
-            <option>Cliente</option>
-            <option>Proveedor</option>
-            <option>Empleado</option>
-          </select>
+      <div class="uk-navbar-right uk-visible@m">
+        <ul class="uk-navbar-nav">
+          <li><a href="#productos">Productos</a></li>
+          <li><a href="#packs">Packs</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+        <div class="uk-navbar-item">
+          <a class="uk-button uk-button-primary uk-border-pill" href="#contacto">
+            Pedir ahora
+          </a>
         </div>
       </div>
 
-      <div class="column is-6">
-        <label class="label">Monto</label>
-        <input class="input" type="number" placeholder="Ej: 15000">
+      <!-- Menú móvil -->
+      <div class="uk-navbar-right uk-hidden@m">
+        <a class="uk-navbar-toggle" uk-navbar-toggle-icon href="#offcanvas-nav" uk-toggle></a>
       </div>
-
-      <div class="column is-12">
-        <button type="button" class="button is-primary" onclick="openBulmaModal()">
-          Guardar (Popup)
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Modal Bulma -->
-  <div id="bulmaModal" class="modal">
-    <div class="modal-background" onclick="closeBulmaModal()"></div>
-    <div class="modal-card" style="width: 90%; max-width: 1000px;">
-      <header class="modal-card-head">
-        <p class="modal-card-title">Bulma - Tabla en Modal</p>
-        <button class="delete" aria-label="close" onclick="closeBulmaModal()"></button>
-      </header>
-      <section class="modal-card-body">
-        <table class="table is-striped is-fullwidth">
-          <thead>
-            <tr>
-              <th>ID</th><th>Nombre</th><th>Edad</th><th>Fecha</th><th>Categoría</th><th>Monto</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>1</td><td>Ana</td><td>24</td><td>2026-02-01</td><td>Cliente</td><td>12000</td></tr>
-            <tr><td>2</td><td>Carlos</td><td>30</td><td>2026-02-02</td><td>Empleado</td><td>25000</td></tr>
-            <tr><td>3</td><td>María</td><td>28</td><td>2026-02-03</td><td>Proveedor</td><td>18000</td></tr>
-            <tr><td>4</td><td>José</td><td>35</td><td>2026-02-04</td><td>Cliente</td><td>9000</td></tr>
-            <tr><td>5</td><td>Lucía</td><td>22</td><td>2026-02-05</td><td>Empleado</td><td>30000</td></tr>
-          </tbody>
-        </table>
-      </section>
-      <footer class="modal-card-foot">
-        <button class="button is-success" onclick="closeBulmaModal()">OK</button>
-      </footer>
-    </div>
+    </nav>
   </div>
 
-  <!-- =========================================================
-       4) MATERIALIZE
-  ========================================================== -->
-  <section class="demo-section">
-    <div class="demo-title">4) Materialize CSS</div>
+  <!-- OFFCANVAS MOBILE -->
+  <div id="offcanvas-nav" uk-offcanvas="overlay: true">
+    <div class="uk-offcanvas-bar">
+      <button class="uk-offcanvas-close" type="button" uk-close></button>
 
-    <div class="row">
-      <div class="input-field col s12 m4">
-        <input id="mat_nombre" type="text">
-        <label for="mat_nombre">Nombre</label>
-      </div>
+      <h3 class="uk-margin-small-bottom">🍦 Dulce Frío</h3>
+      <p class="uk-text-small uk-margin-remove-top">Helados, paletas y bolis por caja.</p>
 
-      <div class="input-field col s12 m4">
-        <input id="mat_edad" type="number">
-        <label for="mat_edad">Edad</label>
-      </div>
+      <ul class="uk-nav uk-nav-default uk-margin-top">
+        <li><a href="#productos" uk-toggle>Productos</a></li>
+        <li><a href="#packs" uk-toggle>Packs</a></li>
+        <li><a href="#nosotros" uk-toggle>Nosotros</a></li>
+        <li><a href="#faq" uk-toggle>FAQ</a></li>
+        <li><a href="#contacto" uk-toggle>Contacto</a></li>
+      </ul>
 
-      <div class="input-field col s12 m4">
-        <input id="mat_fecha" type="text" class="datepicker">
-        <label for="mat_fecha">Fecha</label>
-      </div>
-
-      <div class="input-field col s12 m6">
-        <select>
-          <option value="" disabled selected>Seleccione...</option>
-          <option value="1">Cliente</option>
-          <option value="2">Proveedor</option>
-          <option value="3">Empleado</option>
-        </select>
-        <label>Categoría</label>
-      </div>
-
-      <div class="input-field col s12 m6">
-        <input id="mat_monto" type="number">
-        <label for="mat_monto">Monto</label>
-      </div>
-
-      <div class="col s12">
-        <a class="waves-effect waves-light btn modal-trigger" href="#modalMaterialize">
-          Guardar (Popup)
+      <div class="uk-margin-top">
+        <a class="uk-button uk-button-primary uk-width-1-1 uk-border-pill" href="#contacto" uk-toggle>
+          Pedir ahora
         </a>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- Modal Materialize -->
-  <div id="modalMaterialize" class="modal">
-    <div class="modal-content">
-      <h4>Materialize - Tabla en Modal</h4>
-      <table class="striped">
-        <thead>
-          <tr>
-            <th>ID</th><th>Nombre</th><th>Edad</th><th>Fecha</th><th>Categoría</th><th>Monto</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>1</td><td>Ana</td><td>24</td><td>01/02/2026</td><td>Cliente</td><td>12000</td></tr>
-          <tr><td>2</td><td>Carlos</td><td>30</td><td>02/02/2026</td><td>Empleado</td><td>25000</td></tr>
-          <tr><td>3</td><td>María</td><td>28</td><td>03/02/2026</td><td>Proveedor</td><td>18000</td></tr>
-          <tr><td>4</td><td>José</td><td>35</td><td>04/02/2026</td><td>Cliente</td><td>9000</td></tr>
-          <tr><td>5</td><td>Lucía</td><td>22</td><td>05/02/2026</td><td>Empleado</td><td>30000</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
+  <!-- HERO -->
+  <div class="uk-container uk-margin-large-top">
+    <div class="hero-bg uk-padding-large uk-light soft-shadow">
+      <div class="uk-grid-large uk-flex-middle" uk-grid>
+        <div class="uk-width-1-1 uk-width-3-5@m">
+          <span class="uk-label badge-pack uk-margin-small-bottom">📦 Vendemos por pack de 12</span>
+
+          <h1 class="uk-heading-medium uk-margin-small-top">
+            Helados, Paletas y Bolis para tu negocio o tu familia
+          </h1>
+
+          <p class="uk-text-lead uk-margin-small-top">
+            Sabor artesanal, entrega rápida y precios por caja. Ideal para minisúpers, pulperías, eventos o reventa.
+          </p>
+
+          <div class="uk-margin-medium-top uk-flex uk-flex-wrap uk-flex-middle uk-grid-small" uk-grid>
+            <div>
+              <a class="uk-button uk-button-primary uk-button-large uk-border-pill" href="#packs">
+                Ver packs
+              </a>
+            </div>
+            <div>
+              <a class="uk-button uk-button-default uk-button-large uk-border-pill" href="#productos">
+                Ver catálogo
+              </a>
+            </div>
+          </div>
+
+          <div class="uk-margin-medium-top uk-grid-small uk-child-width-auto" uk-grid>
+            <div><span uk-icon="icon: check"></span> Entregas programadas</div>
+            <div><span uk-icon="icon: check"></span> Precios por volumen</div>
+            <div><span uk-icon="icon: check"></span> Sabores premium</div>
+          </div>
+        </div>
+
+        <div class="uk-width-1-1 uk-width-2-5@m">
+          <div class="uk-card uk-card-default uk-card-body section-card soft-shadow">
+            <h3 class="uk-card-title uk-margin-small-bottom">📌 Pedido rápido</h3>
+
+            <form>
+              <div class="uk-margin">
+                <input class="uk-input uk-border-pill" type="text" placeholder="Nombre o negocio">
+              </div>
+
+              <div class="uk-margin">
+                <input class="uk-input uk-border-pill" type="tel" placeholder="Teléfono">
+              </div>
+
+              <div class="uk-margin">
+                <select class="uk-select uk-border-pill">
+                  <option>¿Qué querés pedir?</option>
+                  <option>Paletas (pack de 12)</option>
+                  <option>Bolis (pack de 12)</option>
+                  <option>Helados (pack de 12)</option>
+                  <option>Mezclado (pack de 12)</option>
+                </select>
+              </div>
+
+              <div class="uk-margin">
+                <input class="uk-input uk-border-pill" type="number" placeholder="Cantidad de packs (Ej: 2)">
+              </div>
+
+              <div class="uk-margin">
+                <button type="button" class="uk-button uk-button-primary uk-width-1-1 uk-border-pill">
+                  Solicitar cotización
+                </button>
+              </div>
+
+              <p class="uk-text-small uk-margin-remove">
+                * Este formulario es informativo. El pedido final se confirma por WhatsApp o llamada.
+              </p>
+            </form>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
 
-  <!-- =========================================================
-       5) UIKIT
-  ========================================================== -->
-  <section class="demo-section">
-    <div class="demo-title">5) UIkit</div>
+  <!-- PRODUCTOS -->
+  <div id="productos" class="uk-container uk-margin-large-top">
+    <h2 class="uk-heading-small">🍧 Productos más vendidos</h2>
+    <p class="uk-text-muted">Podés reutilizar esta sección para cualquier negocio (ropa, ferretería, etc.).</p>
 
-    <div class="uk-grid-small uk-child-width-1-2@s uk-child-width-1-3@m" uk-grid>
-      <div>
-        <label class="uk-form-label">Nombre</label>
-        <input class="uk-input" type="text" placeholder="Ej: Jason">
-      </div>
+    <div class="uk-grid-match uk-child-width-1-2@s uk-child-width-1-3@m uk-margin-medium-top" uk-grid>
 
       <div>
-        <label class="uk-form-label">Edad</label>
-        <input class="uk-input" type="number" placeholder="Ej: 25">
-      </div>
-
-      <div>
-        <label class="uk-form-label">Fecha</label>
-        <input class="uk-input" type="date">
+        <div class="uk-card uk-card-default uk-card-body section-card soft-shadow">
+          <h3 class="uk-card-title">Paletas frutales</h3>
+          <p class="uk-text-small uk-text-muted">Fresa • Mango • Piña • Uva</p>
+          <p>Perfectas para reventa. Alta rotación.</p>
+          <span class="uk-label">Pack 12 unidades</span>
+        </div>
       </div>
 
       <div>
-        <label class="uk-form-label">Categoría</label>
-        <select class="uk-select">
-          <option>Seleccione...</option>
-          <option>Cliente</option>
-          <option>Proveedor</option>
-          <option>Empleado</option>
-        </select>
+        <div class="uk-card uk-card-default uk-card-body section-card soft-shadow">
+          <h3 class="uk-card-title">Bolis cremosos</h3>
+          <p class="uk-text-small uk-text-muted">Vainilla • Chocolate • Cookies</p>
+          <p>El favorito de niños y adultos.</p>
+          <span class="uk-label">Pack 12 unidades</span>
+        </div>
       </div>
 
       <div>
-        <label class="uk-form-label">Monto</label>
-        <input class="uk-input" type="number" placeholder="Ej: 15000">
+        <div class="uk-card uk-card-default uk-card-body section-card soft-shadow">
+          <h3 class="uk-card-title">Helados premium</h3>
+          <p class="uk-text-small uk-text-muted">Oreo • Menta • Café • Caramelo</p>
+          <p>Más margen para negocios.</p>
+          <span class="uk-label">Pack 12 unidades</span>
+        </div>
       </div>
 
-      <div class="uk-flex uk-flex-middle uk-flex-left uk-flex-wrap uk-grid-small" uk-grid>
-        <button class="uk-button uk-button-primary" type="button" uk-toggle="target: #modalUikit">
-          Guardar (Popup)
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Modal UIkit -->
-  <div id="modalUikit" uk-modal>
-    <div class="uk-modal-dialog uk-modal-body uk-width-1-1 uk-width-2-3@m">
-      <h2 class="uk-modal-title">UIkit - Tabla en Modal</h2>
-
-      <div class="uk-overflow-auto">
-        <table class="uk-table uk-table-striped uk-table-hover uk-table-divider">
-          <thead>
-            <tr>
-              <th>ID</th><th>Nombre</th><th>Edad</th><th>Fecha</th><th>Categoría</th><th>Monto</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>1</td><td>Ana</td><td>24</td><td>2026-02-01</td><td>Cliente</td><td>12000</td></tr>
-            <tr><td>2</td><td>Carlos</td><td>30</td><td>2026-02-02</td><td>Empleado</td><td>25000</td></tr>
-            <tr><td>3</td><td>María</td><td>28</td><td>2026-02-03</td><td>Proveedor</td><td>18000</td></tr>
-            <tr><td>4</td><td>José</td><td>35</td><td>2026-02-04</td><td>Cliente</td><td>9000</td></tr>
-            <tr><td>5</td><td>Lucía</td><td>22</td><td>2026-02-05</td><td>Empleado</td><td>30000</td></tr>
-          </tbody>
-        </table>
+      <div>
+        <div class="uk-card uk-card-default uk-card-body section-card soft-shadow">
+          <h3 class="uk-card-title">Combo familiar</h3>
+          <p class="uk-text-small uk-text-muted">Mix de sabores</p>
+          <p>Ideal para eventos o fines de semana.</p>
+          <span class="uk-label uk-label-success">Pack mixto</span>
+        </div>
       </div>
 
-      <p class="uk-text-right">
-        <button class="uk-button uk-button-default uk-modal-close" type="button">Cerrar</button>
-      </p>
+      <div>
+        <div class="uk-card uk-card-default uk-card-body section-card soft-shadow">
+          <h3 class="uk-card-title">Pack para minisúper</h3>
+          <p class="uk-text-small uk-text-muted">Alta rotación</p>
+          <p>Diseñado para vender rápido y reponer fácil.</p>
+          <span class="uk-label uk-label-warning">Negocios</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="uk-card uk-card-default uk-card-body section-card soft-shadow">
+          <h3 class="uk-card-title">Pack personalizado</h3>
+          <p class="uk-text-small uk-text-muted">Vos elegís los sabores</p>
+          <p>Armamos el pack según disponibilidad.</p>
+          <span class="uk-label uk-label-danger">Personalizado</span>
+        </div>
+      </div>
+
     </div>
   </div>
 
-  <!-- =========================
-       SCRIPTS
-  ========================== -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- PACKS -->
+  <div id="packs" class="uk-container uk-margin-large-top">
+    <h2 class="uk-heading-small">📦 Packs de 12 (modelo de venta)</h2>
+    <p class="uk-text-muted">
+      Esto es lo más importante: NO vendemos una unidad, vendemos por caja (ideal para 1 o 1000 negocios).
+    </p>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <div class="uk-grid-match uk-child-width-1-1 uk-child-width-1-3@m uk-margin-medium-top" uk-grid>
 
+      <div>
+        <div class="uk-card uk-card-default uk-card-body section-card soft-shadow">
+          <h3 class="uk-card-title">Pack Básico</h3>
+          <p class="uk-text-large uk-margin-small">12 unidades</p>
+          <ul class="uk-list uk-list-bullet">
+            <li>1 sabor</li>
+            <li>Entrega rápida</li>
+            <li>Ideal para familia</li>
+          </ul>
+          <a class="uk-button uk-button-primary uk-width-1-1 uk-border-pill" href="#contacto">Pedir</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="uk-card uk-card-primary uk-card-body section-card soft-shadow">
+          <h3 class="uk-card-title">Pack Negocio ⭐</h3>
+          <p class="uk-text-large uk-margin-small">12 unidades</p>
+          <ul class="uk-list uk-list-bullet">
+            <li>2 sabores</li>
+            <li>Precio por volumen</li>
+            <li>Recomendado para reventa</li>
+          </ul>
+          <a class="uk-button uk-button-default uk-width-1-1 uk-border-pill" href="#contacto">Pedir</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="uk-card uk-card-default uk-card-body section-card soft-shadow">
+          <h3 class="uk-card-title">Pack Mixto</h3>
+          <p class="uk-text-large uk-margin-small">12 unidades</p>
+          <ul class="uk-list uk-list-bullet">
+            <li>3 sabores</li>
+            <li>Para eventos</li>
+            <li>Ideal para cumpleaños</li>
+          </ul>
+          <a class="uk-button uk-button-primary uk-width-1-1 uk-border-pill" href="#contacto">Pedir</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- NOSOTROS -->
+  <div id="nosotros" class="uk-container uk-margin-large-top">
+    <div class="uk-grid-large uk-flex-middle" uk-grid>
+      <div class="uk-width-1-1 uk-width-1-2@m">
+        <h2 class="uk-heading-small">👋 ¿Quiénes somos?</h2>
+        <p class="uk-text-lead">
+          Somos <b>Dulce Frío</b>, una empresa dedicada a fabricar helados, paletas y bolis artesanales.
+        </p>
+        <p>
+          Nuestra idea es simple: vender en <b>packs de 12</b> para ofrecer un precio justo,
+          facilitar la logística y permitir reventa a negocios pequeños.
+        </p>
+
+        <div class="uk-grid-small uk-child-width-1-1 uk-child-width-1-3@s uk-margin-medium-top" uk-grid>
+          <div>
+            <div class="uk-card uk-card-default uk-card-body section-card soft-shadow">
+              <h4 class="uk-margin-remove">🎯 Misión</h4>
+              <p class="uk-margin-small-top uk-text-small">
+                (Aquí ponés tu misión real)
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <div class="uk-card uk-card-default uk-card-body section-card soft-shadow">
+              <h4 class="uk-margin-remove">🚀 Visión</h4>
+              <p class="uk-margin-small-top uk-text-small">
+                (Aquí ponés tu visión real)
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <div class="uk-card uk-card-default uk-card-body section-card soft-shadow">
+              <h4 class="uk-margin-remove">💎 Valores</h4>
+              <p class="uk-margin-small-top uk-text-small">
+                (Aquí ponés tus valores reales)
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="uk-width-1-1 uk-width-1-2@m">
+        <div class="uk-card uk-card-default uk-card-body section-card soft-shadow">
+          <h3 class="uk-card-title">📊 ¿Por qué vendemos por pack?</h3>
+          <ul class="uk-list uk-list-divider">
+            <li><b>Más barato:</b> precio por volumen</li>
+            <li><b>Más rápido:</b> entregas y pedidos fáciles</li>
+            <li><b>Más rentable:</b> ideal para reventa</li>
+            <li><b>Más orden:</b> inventario claro (12 por caja)</li>
+          </ul>
+        </div>
+
+        <div class="uk-card uk-card-default uk-card-body section-card soft-shadow uk-margin-top">
+          <h3 class="uk-card-title">🧊 Sabores disponibles</h3>
+          <div class="uk-flex uk-flex-wrap uk-grid-small" uk-grid>
+            <span class="uk-label">Fresa</span>
+            <span class="uk-label">Mango</span>
+            <span class="uk-label">Piña</span>
+            <span class="uk-label">Chocolate</span>
+            <span class="uk-label">Oreo</span>
+            <span class="uk-label">Café</span>
+            <span class="uk-label">Caramelo</span>
+            <span class="uk-label">Uva</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- TESTIMONIOS -->
+  <div class="uk-container uk-margin-large-top">
+    <h2 class="uk-heading-small">⭐ Opiniones</h2>
+    <div class="uk-grid-match uk-child-width-1-1 uk-child-width-1-3@m uk-margin-medium-top" uk-grid>
+
+      <div>
+        <div class="uk-card uk-card-default uk-card-body section-card soft-shadow">
+          <p class="uk-text-lead">“Se venden rapidísimo, buen margen.”</p>
+          <p class="uk-text-small uk-text-muted">— Minisúper La Esquina</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="uk-card uk-card-default uk-card-body section-card soft-shadow">
+          <p class="uk-text-lead">“Los bolis cremosos son otro nivel.”</p>
+          <p class="uk-text-small uk-text-muted">— Cliente frecuente</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="uk-card uk-card-default uk-card-body section-card soft-shadow">
+          <p class="uk-text-lead">“Packs mixtos para eventos, recomendados.”</p>
+          <p class="uk-text-small uk-text-muted">— Organizador de eventos</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div id="faq" class="uk-container uk-margin-large-top">
+    <h2 class="uk-heading-small">❓ Preguntas frecuentes</h2>
+
+    <ul uk-accordion class="uk-margin-medium-top">
+      <li class="uk-open">
+        <a class="uk-accordion-title" href="#">¿Venden por unidad?</a>
+        <div class="uk-accordion-content">
+          <p>No. Vendemos por pack de 12 unidades para mantener precios bajos y logística fácil.</p>
+        </div>
+      </li>
+
+      <li>
+        <a class="uk-accordion-title" href="#">¿Hacen entregas?</a>
+        <div class="uk-accordion-content">
+          <p>Sí, hacemos entregas programadas dependiendo de la zona.</p>
+        </div>
+      </li>
+
+      <li>
+        <a class="uk-accordion-title" href="#">¿Puedo escoger sabores?</a>
+        <div class="uk-accordion-content">
+          <p>Sí, en el pack personalizado podés elegir según disponibilidad.</p>
+        </div>
+      </li>
+
+      <li>
+        <a class="uk-accordion-title" href="#">¿Esto sirve para reventa?</a>
+        <div class="uk-accordion-content">
+          <p>Totalmente. Este modelo está pensado para minisúpers, pulperías y eventos.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- CONTACTO -->
+  <div id="contacto" class="uk-container uk-margin-large-top uk-margin-large-bottom">
+    <h2 class="uk-heading-small">📞 Contacto</h2>
+    <p class="uk-text-muted">Dejá tus datos o escribinos directo por WhatsApp.</p>
+
+    <div class="uk-grid-large uk-margin-medium-top" uk-grid>
+      <div class="uk-width-1-1 uk-width-1-2@m">
+        <div class="uk-card uk-card-default uk-card-body section-card soft-shadow">
+          <h3 class="uk-card-title">Formulario</h3>
+
+          <form>
+            <div class="uk-margin">
+              <label class="uk-form-label">Nombre</label>
+              <input class="uk-input uk-border-pill" type="text" placeholder="Tu nombre">
+            </div>
+
+            <div class="uk-margin">
+              <label class="uk-form-label">Teléfono</label>
+              <input class="uk-input uk-border-pill" type="tel" placeholder="Ej: 8888-8888">
+            </div>
+
+            <div class="uk-margin">
+              <label class="uk-form-label">Correo</label>
+              <input class="uk-input uk-border-pill" type="email" placeholder="correo@email.com">
+            </div>
+
+            <div class="uk-margin">
+              <label class="uk-form-label">Mensaje</label>
+              <textarea class="uk-textarea" rows="4" placeholder="Ej: Quiero 5 packs mixtos para este fin de semana..."></textarea>
+            </div>
+
+            <button type="button" class="uk-button uk-button-primary uk-width-1-1 uk-border-pill">
+              Enviar
+            </button>
+
+            <p class="uk-text-small uk-margin-small-top">
+              * Esto es informativo. Podés conectarlo después a WhatsApp, correo o una BD.
+            </p>
+          </form>
+        </div>
+      </div>
+
+      <div class="uk-width-1-1 uk-width-1-2@m">
+        <div class="uk-card uk-card-default uk-card-body section-card soft-shadow">
+          <h3 class="uk-card-title">Información</h3>
+
+          <ul class="uk-list uk-list-divider">
+            <li><b>📍 Ubicación:</b> (Tu ubicación)</li>
+            <li><b>🕐 Horario:</b> Lunes a Sábado 9am - 6pm</li>
+            <li><b>📦 Entregas:</b> Programadas por zona</li>
+            <li><b>💳 Pago:</b> SINPE / Efectivo / Transferencia</li>
+          </ul>
+
+          <div class="uk-margin-top">
+            <a class="uk-button uk-button-default uk-width-1-1 uk-border-pill" href="#">
+              Ver catálogo PDF
+            </a>
+          </div>
+
+          <div class="uk-margin-top">
+            <a class="uk-button uk-button-primary uk-width-1-1 uk-border-pill" href="#">
+              Escribir por WhatsApp
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="uk-section uk-section-small uk-section-muted">
+    <div class="uk-container">
+      <div class="uk-grid-small uk-child-width-1-2@m" uk-grid>
+        <div>
+          <h4 class="uk-margin-remove">🍦 Dulce Frío</h4>
+          <p class="uk-text-small uk-margin-small-top uk-text-muted">
+            Helados, paletas y bolis por pack de 12. Página informativa lista para reutilizar.
+          </p>
+        </div>
+
+        <div class="uk-text-right@m">
+          <p class="uk-text-small uk-margin-remove">
+            © 2026 - Todos los derechos reservados
+          </p>
+          <p class="uk-text-small uk-margin-remove">
+            Hecho con UIkit + VS Code
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp flotante -->
+  <div class="floating-whatsapp">
+    <a class="uk-button uk-button-primary uk-border-pill" href="#contacto" uk-scroll>
+      💬 WhatsApp
+    </a>
+  </div>
+
+  <!-- UIkit JS -->
   <script src="https://cdn.jsdelivr.net/npm/uikit@3.20.10/dist/js/uikit.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/uikit@3.20.10/dist/js/uikit-icons.min.js"></script>
-
-  <script>
-    // Materialize init
-    document.addEventListener('DOMContentLoaded', function () {
-      var selects = document.querySelectorAll('select');
-      M.FormSelect.init(selects);
-
-      var datepickers = document.querySelectorAll('.datepicker');
-      M.Datepicker.init(datepickers, { format: "dd/mm/yyyy" });
-
-      var modals = document.querySelectorAll('.modal');
-      M.Modal.init(modals);
-    });
-
-    // Tailwind modal
-    function openTailwindModal() {
-      const modal = document.getElementById("tailwindModal");
-      modal.classList.remove("hidden");
-      modal.classList.add("flex");
-    }
-
-    function closeTailwindModal() {
-      const modal = document.getElementById("tailwindModal");
-      modal.classList.add("hidden");
-      modal.classList.remove("flex");
-    }
-
-    // Bulma modal
-    function openBulmaModal() {
-      document.getElementById("bulmaModal").classList.add("is-active");
-    }
-
-    function closeBulmaModal() {
-      document.getElementById("bulmaModal").classList.remove("is-active");
-    }
-  </script>
 
 </body>
 </html>
