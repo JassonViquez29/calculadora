@@ -1,105 +1,412 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Trading Signals Manager</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Demo Frameworks CSS (Bootstrap, Tailwind, Bulma, Materialize, UIkit)</title>
 
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- =========================
+       1) BOOTSTRAP
+  ========================== -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css">
+  <!-- =========================
+       2) TAILWIND
+  ========================== -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- =========================
+       3) BULMA
+  ========================== -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+
+  <!-- =========================
+       4) MATERIALIZE
+  ========================== -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- =========================
+       5) UIKIT
+  ========================== -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.20.10/dist/css/uikit.min.css" />
+
+  <style>
+    body {
+      background: #f6f7fb;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+    }
+
+    .demo-section {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 30px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+    }
+
+    .demo-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #ddd;
+    }
+  </style>
 </head>
-<body class="bg-dark text-light">
 
-<div class="container py-4">
-    <h2 class="text-center mb-4">📊 Registro de Señales - Índices Sintéticos</h2>
+<body>
 
-    <!-- FORM -->
-    <div class="card bg-secondary mb-4">
-        <div class="card-body">
-            <form id="signalForm" class="row g-3">
+  <h1 style="margin-bottom: 25px;">📌 Demo de 5 frameworks CSS (en una sola página)</h1>
 
-                <div class="col-md-3">
-                    <label class="form-label">Índice</label>
-                    <select class="form-select" id="indice" required>
-                        <option value="">Seleccione</option>
-                        <option>Boom 1000</option>
-                        <option>Crash 300</option>
-                    </select>
-                </div>
+  <!-- =========================================================
+       1) BOOTSTRAP
+  ========================================================== -->
+  <section class="demo-section">
+    <div class="demo-title">1) Bootstrap</div>
 
-                <div class="col-md-3">
-                    <label class="form-label">Tipo</label>
-                    <select class="form-select" id="tipo" required>
-                        <option value="">Seleccione</option>
-                        <option>Compra</option>
-                        <option>Venta</option>
-                    </select>
-                </div>
+    <form class="row g-3">
+      <div class="col-md-4">
+        <label class="form-label">Nombre</label>
+        <input type="text" class="form-control" placeholder="Ej: Jason">
+      </div>
 
-                <div class="col-md-2">
-                    <label class="form-label">Entrada</label>
-                    <input type="number" step="0.01" class="form-control" id="entrada" required>
-                </div>
+      <div class="col-md-4">
+        <label class="form-label">Edad (número)</label>
+        <input type="number" class="form-control" placeholder="Ej: 25">
+      </div>
 
-                <div class="col-md-2">
-                    <label class="form-label">Stop Loss</label>
-                    <input type="number" step="0.01" class="form-control" id="sl" required>
-                </div>
+      <div class="col-md-4">
+        <label class="form-label">Fecha</label>
+        <input type="date" class="form-control">
+      </div>
 
-                <div class="col-md-2">
-                    <label class="form-label">Take Profit</label>
-                    <input type="number" step="0.01" class="form-control" id="tp" required>
-                </div>
+      <div class="col-md-6">
+        <label class="form-label">Categoría</label>
+        <select class="form-select">
+          <option selected>Seleccione...</option>
+          <option>Cliente</option>
+          <option>Proveedor</option>
+          <option>Empleado</option>
+        </select>
+      </div>
 
-                <div class="col-md-3">
-                    <label class="form-label">Resultado</label>
-                    <select class="form-select" id="resultado">
-                        <option>Pendiente</option>
-                        <option>Win</option>
-                        <option>Loss</option>
-                    </select>
-                </div>
+      <div class="col-md-6">
+        <label class="form-label">Monto</label>
+        <input type="number" class="form-control" placeholder="Ej: 15000">
+      </div>
 
-                <div class="col-md-9">
-                    <label class="form-label">Comentario</label>
-                    <input type="text" class="form-control" id="comentario">
-                </div>
+      <div class="col-12">
+        <button class="btn btn-primary">Guardar</button>
+        <button type="reset" class="btn btn-outline-secondary">Limpiar</button>
+      </div>
+    </form>
 
-                <div class="col-12 text-end">
-                    <button class="btn btn-success">Guardar Señal</button>
-                </div>
+    <hr>
 
-            </form>
-        </div>
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Edad</th>
+          <th>Fecha</th>
+          <th>Categoría</th>
+          <th>Monto</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>Ana</td><td>24</td><td>2026-02-01</td><td>Cliente</td><td>12000</td></tr>
+        <tr><td>2</td><td>Carlos</td><td>30</td><td>2026-02-02</td><td>Empleado</td><td>25000</td></tr>
+        <tr><td>3</td><td>María</td><td>28</td><td>2026-02-03</td><td>Proveedor</td><td>18000</td></tr>
+        <tr><td>4</td><td>José</td><td>35</td><td>2026-02-04</td><td>Cliente</td><td>9000</td></tr>
+        <tr><td>5</td><td>Lucía</td><td>22</td><td>2026-02-05</td><td>Empleado</td><td>30000</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- =========================================================
+       2) TAILWIND
+  ========================================================== -->
+  <section class="demo-section">
+    <div class="demo-title">2) Tailwind CSS</div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <label class="block font-semibold mb-1">Nombre</label>
+        <input class="w-full border rounded-lg p-2" type="text" placeholder="Ej: Jason">
+      </div>
+
+      <div>
+        <label class="block font-semibold mb-1">Edad (número)</label>
+        <input class="w-full border rounded-lg p-2" type="number" placeholder="Ej: 25">
+      </div>
+
+      <div>
+        <label class="block font-semibold mb-1">Fecha</label>
+        <input class="w-full border rounded-lg p-2" type="date">
+      </div>
+
+      <div>
+        <label class="block font-semibold mb-1">Categoría</label>
+        <select class="w-full border rounded-lg p-2">
+          <option>Seleccione...</option>
+          <option>Cliente</option>
+          <option>Proveedor</option>
+          <option>Empleado</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block font-semibold mb-1">Monto</label>
+        <input class="w-full border rounded-lg p-2" type="number" placeholder="Ej: 15000">
+      </div>
+
+      <div class="flex items-end gap-2">
+        <button class="px-4 py-2 rounded-lg bg-black text-white">Guardar</button>
+        <button class="px-4 py-2 rounded-lg border">Limpiar</button>
+      </div>
     </div>
 
-    <!-- TABLE -->
-    <div class="card bg-secondary">
-        <div class="card-body table-responsive">
-            <table class="table table-dark table-striped align-middle">
-                <thead>
-                    <tr>
-                        <th>Fecha</th>
-                        <th>Índice</th>
-                        <th>Tipo</th>
-                        <th>Entrada</th>
-                        <th>SL</th>
-                        <th>TP</th>
-                        <th>Resultado</th>
-                        <th>Comentario</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody id="tablaSignals"></tbody>
-            </table>
+    <div class="mt-6 overflow-auto">
+      <table class="w-full border border-gray-300">
+        <thead class="bg-gray-100">
+          <tr>
+            <th class="border p-2">ID</th>
+            <th class="border p-2">Nombre</th>
+            <th class="border p-2">Edad</th>
+            <th class="border p-2">Fecha</th>
+            <th class="border p-2">Categoría</th>
+            <th class="border p-2">Monto</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="border p-2">1</td><td class="border p-2">Ana</td><td class="border p-2">24</td><td class="border p-2">2026-02-01</td><td class="border p-2">Cliente</td><td class="border p-2">12000</td></tr>
+          <tr><td class="border p-2">2</td><td class="border p-2">Carlos</td><td class="border p-2">30</td><td class="border p-2">2026-02-02</td><td class="border p-2">Empleado</td><td class="border p-2">25000</td></tr>
+          <tr><td class="border p-2">3</td><td class="border p-2">María</td><td class="border p-2">28</td><td class="border p-2">2026-02-03</td><td class="border p-2">Proveedor</td><td class="border p-2">18000</td></tr>
+          <tr><td class="border p-2">4</td><td class="border p-2">José</td><td class="border p-2">35</td><td class="border p-2">2026-02-04</td><td class="border p-2">Cliente</td><td class="border p-2">9000</td></tr>
+          <tr><td class="border p-2">5</td><td class="border p-2">Lucía</td><td class="border p-2">22</td><td class="border p-2">2026-02-05</td><td class="border p-2">Empleado</td><td class="border p-2">30000</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       3) BULMA
+  ========================================================== -->
+  <section class="demo-section">
+    <div class="demo-title">3) Bulma</div>
+
+    <div class="columns is-multiline">
+      <div class="column is-4">
+        <label class="label">Nombre</label>
+        <input class="input" type="text" placeholder="Ej: Jason">
+      </div>
+
+      <div class="column is-4">
+        <label class="label">Edad</label>
+        <input class="input" type="number" placeholder="Ej: 25">
+      </div>
+
+      <div class="column is-4">
+        <label class="label">Fecha</label>
+        <input class="input" type="date">
+      </div>
+
+      <div class="column is-6">
+        <label class="label">Categoría</label>
+        <div class="select is-fullwidth">
+          <select>
+            <option>Seleccione...</option>
+            <option>Cliente</option>
+            <option>Proveedor</option>
+            <option>Empleado</option>
+          </select>
         </div>
+      </div>
+
+      <div class="column is-6">
+        <label class="label">Monto</label>
+        <input class="input" type="number" placeholder="Ej: 15000">
+      </div>
+
+      <div class="column is-12">
+        <button class="button is-primary">Guardar</button>
+        <button class="button is-light">Limpiar</button>
+      </div>
     </div>
 
-</div>
+    <table class="table is-striped is-fullwidth">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Edad</th>
+          <th>Fecha</th>
+          <th>Categoría</th>
+          <th>Monto</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>Ana</td><td>24</td><td>2026-02-01</td><td>Cliente</td><td>12000</td></tr>
+        <tr><td>2</td><td>Carlos</td><td>30</td><td>2026-02-02</td><td>Empleado</td><td>25000</td></tr>
+        <tr><td>3</td><td>María</td><td>28</td><td>2026-02-03</td><td>Proveedor</td><td>18000</td></tr>
+        <tr><td>4</td><td>José</td><td>35</td><td>2026-02-04</td><td>Cliente</td><td>9000</td></tr>
+        <tr><td>5</td><td>Lucía</td><td>22</td><td>2026-02-05</td><td>Empleado</td><td>30000</td></tr>
+      </tbody>
+    </table>
+  </section>
 
-<script src="app.js"></script>
+  <!-- =========================================================
+       4) MATERIALIZE
+  ========================================================== -->
+  <section class="demo-section">
+    <div class="demo-title">4) Materialize CSS</div>
+
+    <div class="row">
+      <div class="input-field col s12 m4">
+        <input id="mat_nombre" type="text">
+        <label for="mat_nombre">Nombre</label>
+      </div>
+
+      <div class="input-field col s12 m4">
+        <input id="mat_edad" type="number">
+        <label for="mat_edad">Edad</label>
+      </div>
+
+      <div class="input-field col s12 m4">
+        <input id="mat_fecha" type="text" class="datepicker">
+        <label for="mat_fecha">Fecha</label>
+      </div>
+
+      <div class="input-field col s12 m6">
+        <select>
+          <option value="" disabled selected>Seleccione...</option>
+          <option value="1">Cliente</option>
+          <option value="2">Proveedor</option>
+          <option value="3">Empleado</option>
+        </select>
+        <label>Categoría</label>
+      </div>
+
+      <div class="input-field col s12 m6">
+        <input id="mat_monto" type="number">
+        <label for="mat_monto">Monto</label>
+      </div>
+
+      <div class="col s12">
+        <a class="waves-effect waves-light btn">Guardar</a>
+        <a class="waves-effect waves-light btn grey">Limpiar</a>
+      </div>
+    </div>
+
+    <table class="striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Edad</th>
+          <th>Fecha</th>
+          <th>Categoría</th>
+          <th>Monto</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>Ana</td><td>24</td><td>01/02/2026</td><td>Cliente</td><td>12000</td></tr>
+        <tr><td>2</td><td>Carlos</td><td>30</td><td>02/02/2026</td><td>Empleado</td><td>25000</td></tr>
+        <tr><td>3</td><td>María</td><td>28</td><td>03/02/2026</td><td>Proveedor</td><td>18000</td></tr>
+        <tr><td>4</td><td>José</td><td>35</td><td>04/02/2026</td><td>Cliente</td><td>9000</td></tr>
+        <tr><td>5</td><td>Lucía</td><td>22</td><td>05/02/2026</td><td>Empleado</td><td>30000</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- =========================================================
+       5) UIKIT
+  ========================================================== -->
+  <section class="demo-section">
+    <div class="demo-title">5) UIkit</div>
+
+    <div class="uk-grid-small uk-child-width-1-2@s uk-child-width-1-3@m" uk-grid>
+      <div>
+        <label class="uk-form-label">Nombre</label>
+        <input class="uk-input" type="text" placeholder="Ej: Jason">
+      </div>
+
+      <div>
+        <label class="uk-form-label">Edad</label>
+        <input class="uk-input" type="number" placeholder="Ej: 25">
+      </div>
+
+      <div>
+        <label class="uk-form-label">Fecha</label>
+        <input class="uk-input" type="date">
+      </div>
+
+      <div>
+        <label class="uk-form-label">Categoría</label>
+        <select class="uk-select">
+          <option>Seleccione...</option>
+          <option>Cliente</option>
+          <option>Proveedor</option>
+          <option>Empleado</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="uk-form-label">Monto</label>
+        <input class="uk-input" type="number" placeholder="Ej: 15000">
+      </div>
+
+      <div class="uk-flex uk-flex-middle uk-flex-left uk-flex-wrap uk-grid-small" uk-grid>
+        <button class="uk-button uk-button-primary">Guardar</button>
+        <button class="uk-button uk-button-default">Limpiar</button>
+      </div>
+    </div>
+
+    <div class="uk-margin-top uk-overflow-auto">
+      <table class="uk-table uk-table-striped uk-table-hover uk-table-divider">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Edad</th>
+            <th>Fecha</th>
+            <th>Categoría</th>
+            <th>Monto</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Ana</td><td>24</td><td>2026-02-01</td><td>Cliente</td><td>12000</td></tr>
+          <tr><td>2</td><td>Carlos</td><td>30</td><td>2026-02-02</td><td>Empleado</td><td>25000</td></tr>
+          <tr><td>3</td><td>María</td><td>28</td><td>2026-02-03</td><td>Proveedor</td><td>18000</td></tr>
+          <tr><td>4</td><td>José</td><td>35</td><td>2026-02-04</td><td>Cliente</td><td>9000</td></tr>
+          <tr><td>5</td><td>Lucía</td><td>22</td><td>2026-02-05</td><td>Empleado</td><td>30000</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.20.10/dist/js/uikit.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.20.10/dist/js/uikit-icons.min.js"></script>
+
+  <script>
+    // Inicializar componentes Materialize (select y datepicker)
+    document.addEventListener('DOMContentLoaded', function () {
+      var selects = document.querySelectorAll('select');
+      M.FormSelect.init(selects);
+
+      var datepickers = document.querySelectorAll('.datepicker');
+      M.Datepicker.init(datepickers, {
+        format: "dd/mm/yyyy"
+      });
+    });
+  </script>
+
 </body>
 </html>
